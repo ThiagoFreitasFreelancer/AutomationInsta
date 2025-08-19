@@ -20,6 +20,16 @@ import org.json.JSONObject;
 
 public class InstagramPage extends BaseActionElement {
 
+    String [] imagens = {
+        "ChatGPT Image 19 de ago. de 2025, 10_31_54",
+        "profile-pic 2",
+        "ChatGPT Image 19 de ago. de 2025, 10_37_57",
+        "Gemini_Generated_Image_v963gcv963gcv963.png",
+        "ChatGPT Image 19 de ago. de 2025, 11_10_32",
+        "Gemini_Generated_Image_pccziupccziupccz",
+        "ChatGPT Image 19 de ago. de 2025, 11_12_59"
+    };
+
     public String gerarImagemComOpenAI(String prompt) throws Exception {
         String apiKey = System.getenv("API_KEY"); // Coloque sua chave da OpenAI aqui
         URL url = new URL("https://api.openai.com/v1/images/generations");
@@ -153,8 +163,8 @@ public class InstagramPage extends BaseActionElement {
     // URL da imagem
     //String imageUrl = "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60";
     // Caminho local temporário
-    String imageUrl = gerarImagemComOpenAI(text);
-    // String imageUrl = "https://example.com/path/to/your/image.jpg"; // Substitua pela URL da imagem que você deseja enviar
+    //String imageUrl = gerarImagemComOpenAI(text);
+    String imageUrl = "../../../../../files_public/" + imagens[(int) random(0, imagens.length - 1)]; // Substitua pela URL da imagem que você deseja enviar
     String localPath = System.getProperty("java.io.tmpdir") + "upload_instagram.jpg";
 
     // Baixa a imagem para o disco
