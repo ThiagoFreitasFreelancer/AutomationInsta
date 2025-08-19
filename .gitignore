@@ -1,5 +1,5 @@
 ### Browser ###
-src/test/java/utils/Browser.java
+
 
 ### Workspace ###
 .idea/
@@ -33,4 +33,3 @@ logs/
 package-lock.json
 .env
 env
-src/main/java/utils/Browser.java
