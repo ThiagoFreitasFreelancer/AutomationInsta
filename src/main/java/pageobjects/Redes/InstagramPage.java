@@ -8,7 +8,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import static utils.Browser.driver;
-import io.github.cdimascio.dotenv.Dotenv;
 import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
@@ -29,6 +28,7 @@ public class InstagramPage extends BaseActionElement {
         "Gemini_Generated_Image_pccziupccziupccz.jpg",
         "11_12_59.png"
     };
+
 
     public String gerarImagemComOpenAI(String prompt) throws Exception {
         String apiKey = System.getenv("API_KEY"); // Coloque sua chave da OpenAI aqui
@@ -178,25 +178,22 @@ public class InstagramPage extends BaseActionElement {
     inputImage.sendKeys(localPath);
     }
 
-    public void fillInputImagLocal() throws IOException {
-    // Caminho temporário
-    String localPath = System.getProperty("java.io.tmpdir") + File.separator + "upload_instagram.jpg";
+    public void fillInputImagLocal() throws Exception {
+        // Carrega a imagem do classpath (src/test/resources/images)
+        InputStream input = getClass().getClassLoader().getResourceAsStream("public/" + imagens[(int) random(0, imagens.length - 1)]);
+        Objects.requireNonNull(input, "Imagem não encontrada no classpath: " + imagens[(int) random(0, imagens.length - 1)]);
 
-    // Seleciona imagem aleatória
-    String imgName = imagens[(int)(Math.random() * imagens.length)];
+        // Cria caminho temporário para salvar a imagem antes de enviar no input
+        String localPath = System.getProperty("java.io.tmpdir") + File.separator + "upload_instagram.jpg";
+        Files.copy(input, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
 
-    // Lê do classpath (src/main/resources/public)
-    InputStream in = Objects.requireNonNull(
-        getClass().getResourceAsStream("/public/" + imgName),
-        "Imagem não encontrada no classpath: " + imgName
-    );
+        // Fecha o stream
+        input.close();
 
-    // Copia para diretório temporário
-    Files.copy(in, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
+        // Envia o caminho local para o input do Selenium
+        inputImage.sendKeys(localPath);
+    }
 
-    // Envia para o input file
-    inputImage.sendKeys(localPath);
-}
 
 
 }
