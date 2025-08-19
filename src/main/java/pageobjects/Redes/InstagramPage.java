@@ -29,7 +29,7 @@ public class InstagramPage extends BaseActionElement {
         conn.setDoOutput(true);
 
         JSONObject body = new JSONObject();
-        body.put("model", "dall-e-2");
+        body.put("model", "*");
         body.put("prompt", prompt);
         body.put("n", 1);
         body.put("size", "1024x1024");
@@ -155,9 +155,9 @@ public class InstagramPage extends BaseActionElement {
 
     public void fillInputImag() throws Exception {
     // URL da imagem
-    String imageUrl = "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60";
+    //String imageUrl = "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60";
     // Caminho local temporário
-    //String imageUrl = gerarImagemComOpenAI(text);
+    String imageUrl = gerarImagemComOpenAI(text);
     // String imageUrl = "https://example.com/path/to/your/image.jpg"; // Substitua pela URL da imagem que você deseja enviar
     String localPath = System.getProperty("java.io.tmpdir") + "upload_instagram.jpg";
 
