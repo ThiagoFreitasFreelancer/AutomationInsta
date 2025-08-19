@@ -106,23 +106,35 @@ public class InstagramPage extends BaseActionElement {
     @FindBy( css = "input[accept=\"image/avif,image/jpeg,image/png,image/heic,image/heif,video/mp4,video/quicktime\"]" )
     private WebElement inputImage;
 
-    @FindBy( css = "div[class=\"html-div xdj266r x14z9mp xat24cr x1lziwak x9f619 x16ye13r xjbqb8w x78zum5 x15mokao x1ga7v0g x16uus16 xbiv7yw xyamay9 xv54qhq x1l90r2v xf7dkkf x1n2onr6 x1plvlek xryxfnj x1c4vz4f x2lah0s xdt5ytf xqjyukv x1qjc9v5 x1oa3qoh xl56j7k\"]" )
-    private WebElement btnNext;;
+    @FindBy( xpath = "//div[contains(text(), 'Avançar')]" )
+    private WebElement btnNext;
 
     @FindBy( css = "div[aria-placeholder=\"Escreva uma legenda...\"]" )
     private WebElement inputTexLegend;
 
-    @FindBy( css = "div[class=\"html-div xdj266r x14z9mp xat24cr x1lziwak x9f619 x16ye13r xjbqb8w x78zum5 x15mokao x1ga7v0g x16uus16 xbiv7yw xyamay9 xv54qhq x1l90r2v xf7dkkf x1n2onr6 x1plvlek xryxfnj x1c4vz4f x2lah0s xdt5ytf xqjyukv x1qjc9v5 x1oa3qoh xl56j7k\"]" )
+    @FindBy( xpath = "//div[contains(text(), 'Compartilhar')]" )
     private WebElement btnPublish;
+
+    @FindBy( xpath = "//span[contains(text(), 'Criar')]" )
+    private WebElement btnCriar;
+
+    @FindBy( xpath = "//span[contains(text(), 'Postar')]" )
+    private WebElement btnPostar;
 
     public InstagramPage() {
         PageFactory.initElements(Browser.getCurrentDriver(), this);
     }
 
+    public void pressBtnPostar(){
+        pressWebElement(btnPostar);
+    }
+
+    public void pressBtnCriar(){
+        pressWebElement(btnCriar);
+    }
+
     public void pressBtnPublish(){
-        Actions actions = new Actions(driver);
-        Action action = actions.moveToElement(btnPublish).click().build();
-        action.perform();
+        pressWebElement(btnPublish);
     }
 
     public void fillInputLegend() {
@@ -178,24 +190,24 @@ public class InstagramPage extends BaseActionElement {
     }
 
     public void fillInputImagLocal() throws IOException {
-    // Caminho temporário
-    String localPath = System.getProperty("java.io.tmpdir") + File.separator + "upload_instagram.jpg";
+        // Caminho temporário
+        String localPath = System.getProperty("java.io.tmpdir") + File.separator + "upload_instagram.jpg";
 
-    // Seleciona imagem aleatória
-    String imgName = imagens[(int)(Math.random() * imagens.length)];
+        // Seleciona imagem aleatória
+        String imgName = imagens[(int)(Math.random() * imagens.length)];
 
-    // Lê do classpath (src/main/resources/public)
-    InputStream in = Objects.requireNonNull(
-        getClass().getResourceAsStream("/public/" + imgName),
-        "Imagem não encontrada no classpath: " + imgName
-    );
+        // Lê do classpath (src/main/resources/public)
+        InputStream in = Objects.requireNonNull(
+            getClass().getResourceAsStream("/public/" + imgName),
+            "Imagem não encontrada no classpath: " + imgName
+        );
 
-    // Copia para diretório temporário
-    Files.copy(in, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
+        // Copia para diretório temporário
+        Files.copy(in, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
 
-    // Envia para o input file
-    inputImage.sendKeys(localPath);
-}
+        // Envia para o input file
+        inputImage.sendKeys(localPath);
+    }
 
 
 }

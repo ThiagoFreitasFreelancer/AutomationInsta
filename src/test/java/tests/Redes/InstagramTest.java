@@ -20,13 +20,10 @@ public class InstagramTest extends BaseTest {
     @Test
     public void createPublishTest() throws Exception {
 
-        insta.whileTab();
         delay(3);
-        insta.pressKeyboardEnter();
+        insta.pressBtnCriar();
         delay(3);
-        insta.pressKeyboardTab();
-        delay(3);
-        insta.pressKeyboardEnter();
+        insta.pressBtnPostar();
         delay(3);
         insta.fillInputImagLocal();
         delay(3);
@@ -37,7 +34,7 @@ public class InstagramTest extends BaseTest {
         insta.fillInputLegend();
         delay(3);
         insta.pressBtnPublish();
-        delay(10);
+        delay(15);
 
     }
 
