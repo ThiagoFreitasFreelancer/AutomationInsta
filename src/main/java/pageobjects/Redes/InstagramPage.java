@@ -20,8 +20,7 @@ import org.json.JSONObject;
 public class InstagramPage extends BaseActionElement {
 
     public String gerarImagemComOpenAI(String prompt) throws Exception {
-        Dotenv dotenv = Dotenv.load();
-        String apiKey = dotenv.get("API_KEY"); // Coloque sua chave da OpenAI aqui
+        String apiKey = System.getenv("API_KEY"); // Coloque sua chave da OpenAI aqui
         URL url = new URL("https://api.openai.com/v1/images/generations");
         HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
@@ -139,10 +138,8 @@ public class InstagramPage extends BaseActionElement {
 
     public void simplifiedLogin( String user, String pass ) throws InterruptedException {
 
-        Dotenv dotenv = null;
-        dotenv = Dotenv.configure().load();
-        fillInputUser( dotenv.get( user ) );
-        fillInputPasswd( dotenv.get( pass ) );
+        fillInputUser( System.getenv( user ) );
+        fillInputPasswd( System.getenv( pass ) );
         pressBtnLogin();
         delay( 5 );
 

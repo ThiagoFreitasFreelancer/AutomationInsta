@@ -12,7 +12,7 @@ public class InstagramTest extends BaseTest {
     @Before
     public void setupInitial() throws InterruptedException {
 
-        insta.simplifiedLogin("USER_RE", "PASS_RE");
+        insta.simplifiedLogin("INSTAGRAM_USER", "INSTAGRAM_PASSWORD");
         delay(3);
 
     }
