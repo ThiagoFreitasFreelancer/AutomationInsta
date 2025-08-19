@@ -13,7 +13,7 @@ public class InstagramTest extends BaseTest {
     public void setupInitial() throws InterruptedException {
 
         insta.simplifiedLogin("INSTAGRAM_USER", "INSTAGRAM_PASSWORD");
-        delay(3);
+        delay(6);
 
     }
 
@@ -23,19 +23,19 @@ public class InstagramTest extends BaseTest {
         insta.whileTab();
         delay(3);
         insta.pressKeyboardEnter();
-        delay(1);
+        delay(3);
         insta.pressKeyboardTab();
-        delay(1);
+        delay(3);
         insta.pressKeyboardEnter();
-        delay(1);
+        delay(3);
         insta.fillInputImag();
-        delay(1);
+        delay(3);
         insta.pressBtnNext();
-        delay(1);
+        delay(3);
         insta.pressBtnNext();
-        delay(1);
+        delay(3);
         insta.fillInputLegend();
-        delay(1);
+        delay(3);
         insta.pressBtnPublish();
         delay(10);
 
