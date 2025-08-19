@@ -18,7 +18,7 @@ public class InstagramTest extends BaseTest {
     }
 
     @Test
-    public void createPublish() throws Exception {
+    public void createPublishTest() throws Exception {
 
         insta.whileTab();
         delay(3);
