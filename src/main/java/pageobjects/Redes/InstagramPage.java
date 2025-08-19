@@ -9,25 +9,25 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import static utils.Browser.driver;
 import io.github.cdimascio.dotenv.Dotenv;
-
 import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Objects;
 import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONObject;
 
 public class InstagramPage extends BaseActionElement {
 
     String [] imagens = {
-        "ChatGPT Image 19 de ago. de 2025, 10_31_54",
-        "profile-pic 2",
-        "ChatGPT Image 19 de ago. de 2025, 10_37_57",
+        "10_31_54.png",
+        "profile-pic2.png",
+        "10_37_57.png",
         "Gemini_Generated_Image_v963gcv963gcv963.png",
-        "ChatGPT Image 19 de ago. de 2025, 11_10_32",
-        "Gemini_Generated_Image_pccziupccziupccz",
-        "ChatGPT Image 19 de ago. de 2025, 11_12_59"
+        "11_10_32.png",
+        "Gemini_Generated_Image_pccziupccziupccz.jpg",
+        "11_12_59.png"
     };
 
     public String gerarImagemComOpenAI(String prompt) throws Exception {
@@ -143,7 +143,6 @@ public class InstagramPage extends BaseActionElement {
     public void pressBtnLogin() { btnLogin.click(); }
 
     public void simplifiedLogin( String user, String pass ) throws InterruptedException {
-        
         fillInputUser( System.getenv( user ) );
         fillInputPasswd( System.getenv( pass ) );
         pressBtnLogin();
@@ -164,7 +163,7 @@ public class InstagramPage extends BaseActionElement {
     //String imageUrl = "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60";
     // Caminho local temporário
     //String imageUrl = gerarImagemComOpenAI(text);
-    String imageUrl = "../../../../../files_public/" + imagens[(int) random(0, imagens.length - 1)]; // Substitua pela URL da imagem que você deseja enviar
+    String imageUrl = "files_public/" + imagens[(int) random(0, imagens.length - 1)]; // Substitua pela URL da imagem que você deseja enviar
     String localPath = System.getProperty("java.io.tmpdir") + "upload_instagram.jpg";
 
     // Baixa a imagem para o disco
@@ -177,6 +176,27 @@ public class InstagramPage extends BaseActionElement {
 
     // Envia o caminho local para o input
     inputImage.sendKeys(localPath);
+    }
+
+    public void fillInputImagLocal() throws IOException {
+    // Caminho temporário
+    String localPath = System.getProperty("java.io.tmpdir") + File.separator + "upload_instagram.jpg";
+
+    // Seleciona imagem aleatória
+    String imgName = imagens[(int)(Math.random() * imagens.length)];
+
+    // Lê do classpath (src/main/resources/public)
+    InputStream in = Objects.requireNonNull(
+        getClass().getResourceAsStream("/public/" + imgName),
+        "Imagem não encontrada no classpath: " + imgName
+    );
+
+    // Copia para diretório temporário
+    Files.copy(in, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
+
+    // Envia para o input file
+    inputImage.sendKeys(localPath);
 }
+
 
 }

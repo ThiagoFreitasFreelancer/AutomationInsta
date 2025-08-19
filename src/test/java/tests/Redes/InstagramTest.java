@@ -28,7 +28,7 @@ public class InstagramTest extends BaseTest {
         delay(3);
         insta.pressKeyboardEnter();
         delay(3);
-        insta.fillInputImag();
+        insta.fillInputImagLocal();
         delay(3);
         insta.pressBtnNext();
         delay(3);
