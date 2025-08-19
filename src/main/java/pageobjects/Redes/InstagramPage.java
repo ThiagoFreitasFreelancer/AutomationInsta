@@ -29,7 +29,6 @@ public class InstagramPage extends BaseActionElement {
         "11_12_59.png"
     };
 
-
     public String gerarImagemComOpenAI(String prompt) throws Exception {
         String apiKey = System.getenv("API_KEY"); // Coloque sua chave da OpenAI aqui
         URL url = new URL("https://api.openai.com/v1/images/generations");
@@ -178,22 +177,25 @@ public class InstagramPage extends BaseActionElement {
     inputImage.sendKeys(localPath);
     }
 
-    public void fillInputImagLocal() throws Exception {
-        // Carrega a imagem do classpath (src/test/resources/images)
-        InputStream input = getClass().getClassLoader().getResourceAsStream("public/" + imagens[(int) random(0, imagens.length - 1)]);
-        Objects.requireNonNull(input, "Imagem não encontrada no classpath: " + imagens[(int) random(0, imagens.length - 1)]);
+    public void fillInputImagLocal() throws IOException {
+    // Caminho temporário
+    String localPath = System.getProperty("java.io.tmpdir") + File.separator + "upload_instagram.jpg";
 
-        // Cria caminho temporário para salvar a imagem antes de enviar no input
-        String localPath = System.getProperty("java.io.tmpdir") + File.separator + "upload_instagram.jpg";
-        Files.copy(input, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
+    // Seleciona imagem aleatória
+    String imgName = imagens[(int)(Math.random() * imagens.length)];
 
-        // Fecha o stream
-        input.close();
+    // Lê do classpath (src/main/resources/public)
+    InputStream in = Objects.requireNonNull(
+        getClass().getResourceAsStream("/public/" + imgName),
+        "Imagem não encontrada no classpath: " + imgName
+    );
 
-        // Envia o caminho local para o input do Selenium
-        inputImage.sendKeys(localPath);
-    }
+    // Copia para diretório temporário
+    Files.copy(in, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
 
+    // Envia para o input file
+    inputImage.sendKeys(localPath);
+}
 
 
 }
