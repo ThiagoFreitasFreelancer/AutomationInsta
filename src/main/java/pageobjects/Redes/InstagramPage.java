@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import static utils.Browser.driver;
 import io.github.cdimascio.dotenv.Dotenv;
+
 import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
@@ -61,19 +62,14 @@ public class InstagramPage extends BaseActionElement {
         }
     }
 
-    private final String text = "A futuristic and modern Instagram-style image promoting a software house called 'Punk Code Solution'. The design should feature a tech-futuristic or cyberpunk aesthetic, with bold neon colors (purple, black, blue, and magenta), and elements such as digital code, sleek user interfaces, computer screens, and a creative team of developers working together. The logo or brand name 'Punk Code Solution' should be prominently displayed in a bold, tech-style font.\r\n" + //
-                "\r\n" + //
-                "Incorporate catchy text like:\r\n" + //
-                "\r\n" + //
-                "\"Transforming Ideas into Code. Ready to Build the Future with Us?\"\r\n" + //
-                "\r\n" + //
-                "\"Innovative Solutions for a Digital World – Visit punkcodesolution.com.br\"\r\n" + //
-                "\r\n" + //
-                "\"Let's Create the Next Big Thing. Join Us at punkcodesolution.com.br\"\r\n" + //
-                "\r\n" + //
-                "\"Where Cutting-Edge Tech Meets Creative Minds. Discover More at punkcodesolution.com.br\"\r\n" + //
-                "\r\n" + //
-                "The overall vibe should feel innovative, edgy, and high-tech — perfect for a startup tech company. Include a call-to-action to visit the website. Format: square (1:1), Instagram post style.";
+    private final String text = "A futuristic and modern Instagram-style image promoting a software house called 'Punk Code Solution'. "+ 
+    "The design should feature a tech-futuristic or cyberpunk aesthetic, with bold neon colors (purple, black, blue, and magenta)," + 
+    " and elements such as digital code, sleek user interfaces, computer screens, and a creative team of developers working together."+ 
+    "The logo or brand name 'Punk Code Solution' should be prominently displayed in a bold, tech-style font. Incorporate catchy text like,"+        
+    "Transforming Ideas into Code. Ready to Build the Future with Us? , Innovative Solutions for a Digital World Visit punkcodesolution.com.br,"+
+    "Let's Create the Next Big Thing. Join Us at punkcodesolution.com.br, Where Cutting-Edge Tech Meets Creative Minds. Discover More at punkcodesolution.com.br,"+
+    "The overall vibe should feel innovative, edgy, and high-tech — perfect for a startup tech company. Include a call-to-action to visit the website."+
+    " Format: square (1:1), Instagram post style.";
 
     private final String[] textLegend = {"Acesse nosso site: punkcodesolution.com.br",
             "Transformando Ideias em Código. Pronto para Construir o Futuro Conosco?",
