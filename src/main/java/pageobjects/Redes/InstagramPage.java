@@ -29,7 +29,7 @@ public class InstagramPage extends BaseActionElement {
         conn.setDoOutput(true);
 
         JSONObject body = new JSONObject();
-        body.put("model", "*");
+        body.put("model", "dall-e-2");
         body.put("prompt", prompt);
         body.put("n", 1);
         body.put("size", "1024x1024");
