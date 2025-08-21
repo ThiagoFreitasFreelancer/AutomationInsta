@@ -97,19 +97,19 @@ public class InstagramPage extends BaseActionElement {
     @FindBy( css = "button[type='submit']" )
     private WebElement btnLogin;
 
-    @FindBy( css = "button[data-testid=\"close-button\"]" )
+    @FindBy( css = "button[data-testid='close-button']" )
     private WebElement btnClose;
 
-    @FindBy( css = "div[style=\"--chat-container-height: 687;\"]" )
+    @FindBy( css = "div[style='--chat-container-height: 687;']" )
     private WebElement inputQuest;
 
-    @FindBy( css = "input[accept=\"image/avif,image/jpeg,image/png,image/heic,image/heif,video/mp4,video/quicktime\"]" )
+    @FindBy( css = "input[accept='image/avif,image/jpeg,image/png,image/heic,image/heif,video/mp4,video/quicktime']" )
     private WebElement inputImage;
 
     @FindBy( xpath = "//div[contains(text(), 'Avançar')]" )
     private WebElement btnNext;
 
-    @FindBy( css = "div[aria-placeholder=\"Escreva uma legenda...\"]" )
+    @FindBy( css = "div[aria-placeholder='Escreva uma legenda...']" )
     private WebElement inputTexLegend;
 
     @FindBy( xpath = "//div[contains(text(), 'Compartilhar')]" )
@@ -121,8 +121,17 @@ public class InstagramPage extends BaseActionElement {
     @FindBy( xpath = "//span[contains(text(), 'Postar')]" )
     private WebElement btnPostar;
 
+    @FindBy( xpath = "//div[contains(text(), 'Criar novo post')]" )
+    private WebElement formUpload;
+
     public InstagramPage() {
         PageFactory.initElements(Browser.getCurrentDriver(), this);
+    }
+
+    public void motoToElement() {
+        Actions actions = new Actions(driver);
+        Action action = actions.moveToElement(formUpload).build();
+        action.perform();
     }
 
     public void pressBtnPostar(){
@@ -189,24 +198,22 @@ public class InstagramPage extends BaseActionElement {
     inputImage.sendKeys(localPath);
     }
 
-    public void fillInputImagLocal() throws IOException {
-        // Caminho temporário
+    public void fillInputImagLocal() throws Exception {
+        // Carrega a imagem do classpath (src/test/resources/images)
+        InputStream input = getClass().getClassLoader().getResourceAsStream("public/" + imagens[(int) random(0, imagens.length - 1)]);
+        Objects.requireNonNull(input, "Imagem não encontrada no classpath: " + imagens[(int) random(0, imagens.length - 1)]);
+
+        // Cria caminho temporário para salvar a imagem antes de enviar no input
         String localPath = System.getProperty("java.io.tmpdir") + File.separator + "upload_instagram.jpg";
+        Files.copy(input, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
 
-        // Seleciona imagem aleatória
-        String imgName = imagens[(int)(Math.random() * imagens.length)];
+        // Fecha o stream
+        input.close();
 
-        // Lê do classpath (src/main/resources/public)
-        InputStream in = Objects.requireNonNull(
-            getClass().getResourceAsStream("/public/" + imgName),
-            "Imagem não encontrada no classpath: " + imgName
-        );
 
-        // Copia para diretório temporário
-        Files.copy(in, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
-
-        // Envia para o input file
+        // Envia o caminho local para o input do Selenium
         inputImage.sendKeys(localPath);
+        fillInput(inputImage, localPath);
     }
 
 

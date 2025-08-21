@@ -4,18 +4,14 @@ import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
-import io.github.sukgu.Shadow;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import static utils.Browser.driver;
-
 import java.io.File;
 import java.time.Duration;
 import java.time.LocalTime;
-import java.util.Set;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -26,7 +22,7 @@ import java.util.function.Function;
 
 public class BaseActionElement extends BaseTest {
 
-    static int MAX_TIME = 10; // Define um tempo máximo de espera de 10 segundos.
+    static int MAX_TIME = 60; // Define um tempo máximo de espera de 10 segundos.
 
     public static void pressWebElement(WebElement webElement) {
 
@@ -39,7 +35,11 @@ public class BaseActionElement extends BaseTest {
     public static void fillInput(WebElement input, String text) {
 
         Actions action = new Actions(driver);
-        executeExplicitWaitElementVisibility(input);
+        //executeExplicitWaitElementVisibility(input);
+        action.moveToElement(input).build().perform();
+        action.moveToElement(input).build().perform();
+        action.moveToElement(input).build().perform();
+        action.moveToElement(input).build().perform();
         action.moveToElement(input).build().perform();
         input.clear();
         input.sendKeys(text);
