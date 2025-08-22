@@ -35,7 +35,7 @@ public class BaseActionElement extends BaseTest {
     public static void fillInput(WebElement input, String text) {
 
         Actions action = new Actions(driver);
-        //executeExplicitWaitElementVisibility(input);
+        executeExplicitWaitElementVisibility(input);
         action.moveToElement(input).build().perform();
         action.moveToElement(input).build().perform();
         action.moveToElement(input).build().perform();

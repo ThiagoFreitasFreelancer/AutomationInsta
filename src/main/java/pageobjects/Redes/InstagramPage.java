@@ -7,6 +7,9 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import io.github.cdimascio.dotenv.Dotenv;
+
 import static utils.Browser.driver;
 import java.io.*;
 import java.net.*;
@@ -29,8 +32,10 @@ public class InstagramPage extends BaseActionElement {
         "11_12_59.png"
     };
 
+    Dotenv dotenv = Dotenv.load();
+
     public String gerarImagemComOpenAI(String prompt) throws Exception {
-        String apiKey = System.getenv("API_KEY"); // Coloque sua chave da OpenAI aqui
+        String apiKey = dotenv.get("API_KEY"); // Coloque sua chave da OpenAI aqui
         URL url = new URL("https://api.openai.com/v1/images/generations");
         HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
@@ -163,8 +168,8 @@ public class InstagramPage extends BaseActionElement {
     public void pressBtnLogin() { btnLogin.click(); }
 
     public void simplifiedLogin( String user, String pass ) throws InterruptedException {
-        fillInputUser( System.getenv( user ) );
-        fillInputPasswd( System.getenv( pass ) );
+        fillInputUser( dotenv.get( user ) );
+        fillInputPasswd( dotenv.get( pass ) );
         pressBtnLogin();
         delay( 10 );
 
@@ -202,18 +207,22 @@ public class InstagramPage extends BaseActionElement {
         // Carrega a imagem do classpath (src/test/resources/images)
         InputStream input = getClass().getClassLoader().getResourceAsStream("public/" + imagens[(int) random(0, imagens.length - 1)]);
         Objects.requireNonNull(input, "Imagem não encontrada no classpath: " + imagens[(int) random(0, imagens.length - 1)]);
+        System.out.print("\\nAchou a imahem no classpath: " + imagens[(int) random(0, imagens.length - 1)]);
 
         // Cria caminho temporário para salvar a imagem antes de enviar no input
         String localPath = System.getProperty("java.io.tmpdir") + File.separator + "upload_instagram.jpg";
         Files.copy(input, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
+        System.out.print("\\nCopiou a imagem para o caminho local: " + localPath);
 
         // Fecha o stream
         input.close();
 
 
         // Envia o caminho local para o input do Selenium
-        inputImage.sendKeys(localPath);
+        //inputImage.sendKeys(localPath);
+        delay(5);
         fillInput(inputImage, localPath);
+        System.out.print("\\nPreencheu o input de imagem com o caminho local: " + localPath);
     }
 
 
