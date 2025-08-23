@@ -164,8 +164,8 @@ public class InstagramPage extends BaseActionElement {
 
     public void simplifiedLogin( String user, String pass ) throws InterruptedException {
 
-        fillInputUser( dontenv.get( user ) );
-        fillInputPasswd( dontenv.get( pass ) );
+        fillInputUser( System.getenv( user ) );
+        fillInputPasswd( System.getenv( pass ) );
         pressBtnLogin();
         delay( 5 );
 
