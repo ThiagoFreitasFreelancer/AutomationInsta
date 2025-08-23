@@ -38,7 +38,7 @@ public class Browser {
                     ChromeOptions optionsChrome = new ChromeOptions();
                     optionsChrome.addArguments( "start-maximized" );
                     optionsChrome.addArguments("--remote-allow-origins=*");
-                    //optionsChrome.addArguments( "--headless" );
+                    optionsChrome.addArguments( "--headless" );
                     driver = new ChromeDriver( optionsChrome );
                     break;
 
