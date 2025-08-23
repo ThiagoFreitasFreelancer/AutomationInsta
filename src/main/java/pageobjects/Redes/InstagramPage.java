@@ -33,8 +33,6 @@ public class InstagramPage extends BaseActionElement {
         "11_12_59.png"
     };
 
-    Dotenv dotenv = Dotenv.load();
-
     // public String gerarImagemComOpenAI(String prompt) throws Exception {
     //     String apiKey = dotenv.get("API_KEY"); // Coloque sua chave da OpenAI aqui
     //     URL url = new URL("https://api.openai.com/v1/images/generations");
@@ -184,25 +182,25 @@ public class InstagramPage extends BaseActionElement {
         }
     }
 
-    public void fillInputImag() throws Exception {
-    // URL da imagem
-    //String imageUrl = "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60";
-    // Caminho local temporário
-    //String imageUrl = gerarImagemComOpenAI(text);
-    String imageUrl = "files_public/" + imagens[(int) random(0, imagens.length - 1)]; // Substitua pela URL da imagem que você deseja enviar
-    String localPath = System.getProperty("java.io.tmpdir") + "upload_instagram.jpg";
+    // public void fillInputImag() throws Exception {
+    // // URL da imagem
+    // //String imageUrl = "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60";
+    // // Caminho local temporário
+    // //String imageUrl = gerarImagemComOpenAI(text);
+    // String imageUrl = "files_public/" + imagens[(int) random(0, imagens.length - 1)]; // Substitua pela URL da imagem que você deseja enviar
+    // String localPath = System.getProperty("java.io.tmpdir") + "upload_instagram.jpg";
 
-    // Baixa a imagem para o disco
-    try (InputStream in = new URL(imageUrl).openStream()) {
-        Files.copy(in, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
-    }
+    // // Baixa a imagem para o disco
+    // try (InputStream in = new URL(imageUrl).openStream()) {
+    //     Files.copy(in, Paths.get(localPath), StandardCopyOption.REPLACE_EXISTING);
+    // }
 
-    // Aguarda o input estar visível/interagível (opcional, se necessário)
-    // new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(inputImage));
+    // // Aguarda o input estar visível/interagível (opcional, se necessário)
+    // // new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(inputImage));
 
-    // Envia o caminho local para o input
-    inputImage.sendKeys(localPath);
-    }
+    // // Envia o caminho local para o input
+    // inputImage.sendKeys(localPath);
+    // }
 
     public void fillInputImagLocal() throws Exception {
         // Carrega a imagem do classpath (src/test/resources/images)
