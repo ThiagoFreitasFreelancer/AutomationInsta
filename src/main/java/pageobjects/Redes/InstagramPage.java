@@ -111,7 +111,7 @@ public class InstagramPage extends BaseActionElement {
     @FindBy( xpath = "//div[contains(text(), 'Avan')]" )
     private WebElement btnNext;
 
-    @FindBy( xpath = "//div[contains(text(), 'Escreva uma')]" )
+    @FindBy( xpath = "//div[contains(text(), 'Escreva')]" )
     private WebElement inputTexLegend;
 
     @FindBy( xpath = "//div[contains(text(), 'Compartilhar')]" )

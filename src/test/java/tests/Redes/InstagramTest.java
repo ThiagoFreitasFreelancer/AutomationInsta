@@ -33,7 +33,7 @@ public class InstagramTest extends BaseTest {
         delay(3);
         System.out.print("Entro no tab bdo criar\\n");
         insta.pressBtnNext();
-        delay(3);
+        delay(2);
         System.out.print("Entro no tab bdo criar\\n");
         insta.pressBtnNext();
         delay(5);
