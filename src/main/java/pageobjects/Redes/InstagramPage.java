@@ -3,12 +3,8 @@ package pageobjects.Redes;
 import utils.Browser;
 import utils.BaseActionElement;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import static utils.Browser.driver;
-import io.github.cdimascio.dotenv.Dotenv;
 import java.io.*;
 import java.net.*;
 import java.nio.file.Files;
@@ -19,8 +15,6 @@ import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONObject;
 
 public class InstagramPage extends BaseActionElement {
-    
-    Dotenv dontenv = Dotenv.load();
 
     String [] imagens = {
             "10_31_54.png",
