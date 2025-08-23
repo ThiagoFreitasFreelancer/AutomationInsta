@@ -169,8 +169,8 @@ public class InstagramPage extends BaseActionElement {
     public void pressBtnLogin() { btnLogin.click(); }
 
     public void simplifiedLogin( String user, String pass ) throws InterruptedException {
-        fillInputUser( dotenv.get( user ) );
-        fillInputPasswd( dotenv.get( pass ) );
+        fillInputUser( System.getenv( user ) );
+        fillInputPasswd( System.getenv( pass ) );
         pressBtnLogin();
         delay( 10 );
 
