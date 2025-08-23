@@ -1,5 +1,6 @@
 package pageobjects.Redes;
 
+import org.openqa.selenium.JavascriptExecutor;
 import utils.Browser;
 import utils.BaseActionElement;
 import org.openqa.selenium.WebElement;
@@ -35,7 +36,7 @@ public class InstagramPage extends BaseActionElement {
     Dotenv dotenv = Dotenv.load();
 
     public String gerarImagemComOpenAI(String prompt) throws Exception {
-        String apiKey = dotenv.get("API_KEY"); // Coloque sua chave da OpenAI aqui
+        String apiKey = System.getenv("API_KEY"); // Coloque sua chave da OpenAI aqui
         URL url = new URL("https://api.openai.com/v1/images/generations");
         HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
@@ -108,7 +109,7 @@ public class InstagramPage extends BaseActionElement {
     @FindBy( css = "div[style='--chat-container-height: 687;']" )
     private WebElement inputQuest;
 
-    @FindBy( css = "input[accept='image/avif,image/jpeg,image/png,image/heic,image/heif,video/mp4,video/quicktime']" )
+    @FindBy( css = "input[type='file'][accept*='image'][accept*='video']" )
     private WebElement inputImage;
 
     @FindBy( xpath = "//div[contains(text(), 'Avançar')]" )
@@ -168,8 +169,8 @@ public class InstagramPage extends BaseActionElement {
     public void pressBtnLogin() { btnLogin.click(); }
 
     public void simplifiedLogin( String user, String pass ) throws InterruptedException {
-        fillInputUser( dotenv.get( user ) );
-        fillInputPasswd( dotenv.get( pass ) );
+        fillInputUser( System.getenv( user ) );
+        fillInputPasswd( System.getenv( pass ) );
         pressBtnLogin();
         delay( 10 );
 
@@ -220,8 +221,12 @@ public class InstagramPage extends BaseActionElement {
 
         // Envia o caminho local para o input do Selenium
         //inputImage.sendKeys(localPath);
-        delay(5);
-        fillInput(inputImage, localPath);
+        //delay(5);
+        //fillInput(inputImage, localPath);
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].value = arguments[1];", inputImage, localPath);
+
         System.out.print("\\nPreencheu o input de imagem com o caminho local: " + localPath);
     }
 
