@@ -74,12 +74,6 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/test/java/resources</directory>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
         <finalName>maven-unit-test</finalName>
         <plugins>
             <plugin>
@@ -97,7 +91,7 @@
                             <outputDirectory>${project.basedir}/target/classes</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>src/main/resources</directory>
+                                    <directory>src/test/java/resources</directory>
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>

@@ -3,6 +3,10 @@ package utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import java.time.Duration;
 
 public class Browser {
@@ -38,7 +42,7 @@ public class Browser {
                     ChromeOptions optionsChrome = new ChromeOptions();
                     optionsChrome.addArguments( "start-maximized" );
                     optionsChrome.addArguments("--remote-allow-origins=*");
-                    optionsChrome.addArguments( "--headless" );
+                    //optionsChrome.addArguments( "--headless" );
                     driver = new ChromeDriver( optionsChrome );
                     break;
 

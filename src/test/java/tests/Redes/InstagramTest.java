@@ -13,33 +13,32 @@ public class InstagramTest extends BaseTest {
     public void setupInitial() throws InterruptedException {
 
         insta.simplifiedLogin("INSTAGRAM_USER", "INSTAGRAM_PASSWORD");
-        System.out.print("Efetuou o login com sucesso!");
-        delay(6);
+        delay(3);
 
     }
 
     @Test
     public void createPublishTest() throws Exception {
 
-        insta.whileTab();
-        delay(2);
+        //insta.whileTab();
+        delay(3);
         System.out.print("Passou pelos tabs\\n");
-        insta.pressKeyboardEnter();
-        delay(2);
+        insta.pressBtnCriar();
+        delay(3);
         System.out.print("Entrou no Criar\\n");
-        insta.pressKeyboardTab();
-        delay(2);
-        System.out.print("Entro no tab bdo criar\\n");
-        insta.pressKeyboardEnter();
-        delay(20);
+        insta.pressBtnPostar();
+        delay(3);
         System.out.print("Abril modal de criar post\\n");
-        insta.fillInputImagLocal();
-        delay(5);
-        System.out.print("Preencheu o input de imagem\\n");
+        insta.fillInputImag();
+        delay(3);
+        System.out.print("Entro no tab bdo criar\\n");
+        insta.pressBtnNext();
+        delay(3);
+        System.out.print("Entro no tab bdo criar\\n");
         insta.pressBtnNext();
         delay(5);
         System.out.print("Clicou no botao de proximo\\n");
-        insta.pressBtnNext();
+        insta.pressBtnPublish();
         delay(5);
         System.out.print("Clicou no botao de proximo novamente\\n");
         insta.fillInputLegend();
